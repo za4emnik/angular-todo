@@ -1,6 +1,9 @@
 {
   "name": "angular-todo",
   "version": "0.0.0",
+  "engines": {
+    "node": "9.2.0"
+  }
   "license": "MIT",
   "scripts": {
     "ng": "ng",
