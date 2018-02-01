@@ -1,0 +1,11 @@
+<p></p>
+<form id="project-edit-form" (ngSubmit)="onSubmit(); projectForm.reset()" #projectForm="ngForm">
+  <div class="form-group">
+    <input type="text" name='name' class="form-control form-control-lg" [(ngModel)]="project.name" placeholder="Enter project name" required autofocus>
+  </div>
+  <div class="row">
+    <div class="col-2"><button class="btn btn-primary btn-md btn-block" type="submit" [disabled]="projectForm.form.invalid">Save</button></div>
+    <div class="col-2"><a (click)="onCloseForm()" class="btn btn-secondary btn-md btn-block">Cancel</a></div>
+  </div>
+</form>
+<p></p>

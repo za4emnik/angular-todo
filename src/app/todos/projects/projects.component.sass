@@ -1,0 +1,37 @@
+$text-color: #636c72;
+
+.project-toolbar
+  display: none
+
+.card-header .project-toolbar
+  display: block
+  height: 0
+  width: 100%
+  text-align: right
+  color: $text-color
+
+project-edit-form
+  width: 100%
+
+.card-header:hover
+  background: #f7f7f9
+  cursor: pointer
+
+.collapsed
+  background: #ffffff
+
+.card .collapsed span::before
+  content: '\f0da' !important
+  padding-right: 5px !important
+  font-family: FontAwesome
+  font-size: 18px
+  position: relative
+  top: 1px
+
+.card span::before
+  content: '\f0dd'
+  font-family: FontAwesome
+  font-size: 18px
+  position: relative
+  top: -2px
+  padding-right: 5px
