@@ -1,0 +1,63 @@
+<li *ngIf="!task.editable" class="list-group-item justify-content-between" [class.text-danger]="isTaskExpired()">
+  <div class="row">
+    <div class="col-10">
+      <div class="float-left task-toolbar task-toolbar-left">
+        <fa [name]="'caret-up'" (click)="onMoveUp.emit(task)" [size]=1></fa>
+        <fa [name]="'caret-down'" (click)="onMoveDown.emit(task)" [size]=1></fa>
+      </div>
+      <input type="checkbox" #completeCheckbox [checked]="task.aasm_state == 'completed'" (change)="completeTask(completeCheckbox.checked)" id="task-{{task.id}}" />
+      <span [class.task-completed]="completeCheckbox.checked">{{task.name}}</span>
+    </div>
+    <div class="col-2">
+      <div class="float-right task-toolbar">
+        <span *ngIf="task.numberOfComments > 0">{{task.numberOfComments}}</span>
+        <fa [name]="'comment'" [size]=1 (click)="openModal(addCommentTemplate)"></fa>
+        <fa [name]="'clock-o'" (click)="openModal(setDeadlineTemplate)" [size]=1></fa>
+        <fa [name]="'pencil'" [size]=1 (click)="task.editable = true"></fa>
+        <fa [name]="'trash'" [size]=1 (click)="openModal(deleteTemplate)"></fa>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #addCommentTemplate>
+    <comments [project]=project [task]=task [modalRef]="modalRef"></comments>
+  </ng-template>
+
+  <ng-template #setDeadlineTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Deadline</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="onCloseDeadlineModal(); modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <datetime [timepicker]="{
+        showMeridian: false,
+        showSeconds: false,
+        minuteStep: 60,
+        icon: 'fa fa-clock-o',
+        icons: { up: 'fa fa-chevron-up', down: 'fa fa-chevron-down' }
+        }" [datepicker]="{ icon: 'fa fa-calendar', autoclose: 'true' }" [(ngModel)]="task.deadline"></datetime>
+    </div>
+    <div class="modal-footer">
+      <button type="button" (click)="onUpdateDeadline.emit(task); modalRef.hide()" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="onCloseDeadlineModal(); modalRef.hide()">Cancel</button>
+    </div>
+  </ng-template>
+
+  <ng-template #deleteTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete task</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Do you really want to delete "{{task.name}}"?
+    </div>
+    <div class="modal-footer">
+      <button type="button" (click)="onDelete.emit(task); modalRef.hide()" class="btn btn-primary">Delete</button>
+      <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancel</button>
+    </div>
+  </ng-template>
+</li>

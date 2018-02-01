@@ -1,0 +1,9 @@
+<form class="project-form" (ngSubmit)="onSubmit(); projectForm.reset()" #projectForm="ngForm">
+  <div class="form-group">
+    <input type="text" (focus)="formButtons=true" name='name' [(ngModel)]="name" placeholder='Enter project name' required class="form-control">
+  </div>
+  <div *ngIf="formButtons" #formButtons>
+    <button class="btn btn-primary" type="submit" [disabled]="projectForm.form.invalid">Create Project</button>
+    <a class="btn btn-secondary" (click)="projectForm.reset()">Cancel</a>
+  </div>
+</form>
