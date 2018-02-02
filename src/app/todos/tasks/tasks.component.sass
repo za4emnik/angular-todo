@@ -1,0 +1,37 @@
+$text-color: #636c72;
+
+.task-toolbar
+  visibility: hidden
+  cursor: pointer
+  color: $text-color
+
+.task-toolbar-left fa
+  position: relative
+
+.task-toolbar-left fa:first-child
+  top: -11px
+
+.task-toolbar-left fa:last-child
+  left: -16px
+  top: 7px
+
+.list-group-item:hover .task-toolbar
+  visibility: visible
+
+.collection-item:hover
+  -webkit-transition: background-color .25s ease
+  transition: background-color .25s ease
+  background-color: #ffebee
+
+.task-editable
+  background-color: #ffebee
+
+.list-group .row
+  width: 100%
+
+.task-completed
+  text-decoration: line-through
+  color: $text-color
+
+datetime .input-group
+  width: 50% !important

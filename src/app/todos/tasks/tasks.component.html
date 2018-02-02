@@ -1,0 +1,13 @@
+<ul class="list-group">
+  <div *ngFor="let task of tasks">
+    <task-item [task]=task
+               [project]=project
+               (onComplete)="complete($event)"
+               (onUpdateDeadline)="updateDeadline($event)"
+               (onDelete)="delete($event)"
+               (onMoveUp)="moveUp($event)"
+               (onMoveDown)="moveDown($event)"></task-item>
+    <task-edit-form *ngIf="task.editable" [task]="task" (edit)="onEditSubmit($event)"></task-edit-form>
+  </div>
+</ul>
+<task-create-form (create)="createTask($event)"></task-create-form>
