@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   token_auth_config: {
-    apiBase: 'https://todoangular2.herokuapp.com'
+    apiBase: 'http://188.166.49.66'
   }
 };
